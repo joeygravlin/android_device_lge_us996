@@ -16,10 +16,33 @@
 
 DEVICE_PATH := device/lge/us996
 
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/Image.lz4-dtb
+# fixes building twrp in lineage tree
+TARGET_CRYPTFS_HW_PATH :=  vendor/qcom/opensource/cryptfs_hw
+
+RECOVERY_VARIANT := twrp
+PRODUCT_COPY_FILES += device/lge/us996/twrp.fstab:recovery/root/etc/twrp.fstab
+TW_THEME := portrait_hdpi
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_OTA_ASSERT_DEVICE := us996
+TW_INCLUDE_CRYPTO := true
+TW_IGNORE_MISC_WIPE_DATA := true
+#shift off second screen, not needed if using lineage kernel
+TW_Y_OFFSET := 160
+TW_H_OFFSET := -160
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/soc/6a00000.ssusb/6a00000.dwc3/gadget/lun%d/file"
+TW_BRIGHTNESS_PATH := "/sys/devices/soc/900000.qcom\x2cmdss_mdp/900000.qcom\x2cmdss_mdp:qcom\x2cmdss_fb_primary/leds/lcd-backlight/brightness"
+TW_MAX_BRIGHTNESS := 255
+TW_DEFAULT_BRIGHTNESS := 149
+TW_SCREEN_BLANK_ON_BOOT := true
+
+# Debug flags
+TWRP_INCLUDE_LOGCAT := true
+
 # inherit from common v20
 -include device/lge/v20-common/BoardConfigCommon.mk
-
-TARGET_OTA_ASSERT_DEVICE := us996
 
 # Kernel
 TARGET_KERNEL_CONFIG := lineageos_us996_defconfig
