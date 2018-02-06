@@ -77,6 +77,11 @@ TW_IGNORE_MISC_WIPE_DATA := true
 #Bottom
 #TW_H_OFFSET := -35
 
+TW_CLOCK_OFFSET := -1451606400
+#US996 offset 46 years
+#H918 TW_CLOCK_OFFSET := -1417208400
+
+
 # exFAT drivers included in the kernel
 TW_NO_EXFAT_FUSE := true
 
